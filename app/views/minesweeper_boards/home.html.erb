@@ -1,0 +1,13 @@
+<h1>Welcome to Minesweeper!</h1>
+
+<h2>Recently Generated Boards:</h2>
+<ul>
+  <% @recent_boards.each do |board| %>
+    <li>
+      <%= link_to board.name, minesweeper_board_path(board) %> -
+      <%= board.email || "No user" %> |
+      <%= board.formatted_created_at %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "View all generated boards", all_boards_path %>

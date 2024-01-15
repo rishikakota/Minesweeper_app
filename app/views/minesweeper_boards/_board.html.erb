@@ -1,0 +1,13 @@
+<% if @board_data %>
+  <table class="table table-bordered">
+    <% @board_data.each do |row| %>
+      <tr>
+        <% row.each do |cell| %>
+          <td><%= cell == 'mine' ? '💣' : '⬜' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No board data available.</p>
+<% end %>

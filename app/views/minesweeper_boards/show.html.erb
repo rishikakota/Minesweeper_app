@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .card {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #007bff;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .show-board {
+      background-color: #ffffff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 20px;
+      text-align: center;
+      overflow: auto;
+    }
+
+    .creator-info {
+      margin-top: 20px;
+      color: #6c757d;
+    }
+
+    .board {
+  display: grid;
+  grid-template-columns: <%= "repeat(#{@minesweeper_board.width}, minmax(30px, 1fr))" %>;
+  grid-template-rows: <%= "repeat(#{@minesweeper_board.height}, minmax(30px, 1fr))" %>;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 4px;
+  overflow: auto;
+}
+
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: #e9ecef; 
+      cursor: pointer;
+    }
+
+    .cell:hover {
+      background-color: #ced4da; 
+    }
+
+    .cell.mine {
+      background-color: #dc3545; 
+      color: #fff; 
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card show-board">
+          <h1><%= @minesweeper_board.name %></h1>
+          <p class="creator-info">Creator: <%= @minesweeper_board.email %></p>
+          <div class="board">
+            <% @board_data.each do |row| %>
+              <% row.each do |cell| %>
+                <div class="cell<%= cell == 'mine' ? ' mine' : '' %>"><%= cell == 'mine' ? '💣' : '' %></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
